@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/sig.css' %}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<style>
+  body {
+    background-image: url("{% static 'images/bg.png' %}");
+    background-size: 120%; 
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+
+}
+.imgs{
+ 
+ background-color: aquamarine;
+    position: absolute;
+    left: 660px;
+    top: 6px;
+    padding: 50px;
+    height: 410px;
+    width: 300px;
+    font-size: 20px;
+    border: none;
+    border-radius: 6px;
+    opacity: 0.5;
+
+
+}
+</style>
+<script>
+function validateForm() {
+  var firstName = document.getElementById("firstName").value;
+  var lastName = document.getElementById("lastName").value;
+  var email =document.getElementById("email").value;
+  var password=document.getElementById("password").value;
+  var re_password=document.getElementById("re_password").value;
+  
+  
+  var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  var phonePattern = /^\d{10}$/;
+  
+ 
+
+  if (firstName == "" || lastName == ""  || password == "" || re_password  == "" || email == "") {
+    alert("All fields must be filled out");
+    return false;
+  } else if (!emailPattern.test(email)) {
+    alert("Please enter a valid email address");
+    return false;
+  }
+  else if (re_password!=password) {
+    alert("Please enter a correct password");
+    return false;
+  }
+  return true;
+}
+$(document).ready(function(){
+  $("#log").click(function(){
+    $(".imgs").hide();
+    $(".reg").hide();
+  
+
+  });
+  $("#log").click(function(){
+
+  $(".login").fadeIn();
+  $(".login").animate({
+    top: '85px'
+   
+  },"slow");
+  
+});
+$("#regs").click(function(){
+
+
+$(".reg").animate({
+  opacity:0.3
+ 
+},"slow");
+$(".imgs").animate({
+  opacity:1
+ 
+},"slow");
+
+});
+});
+</script>
+</head>
+<body>
+  <div class="reg">
+    <form   onsubmit="return validateForm()" name="reg" action="reg" method="post" >
+        {% csrf_token %}
+        <h2 style="border-bottom: 4px solid blue; width: 130px; font-size: 25px
+        ;">SIGN UP</h2>
+        <label>FIRST NAME</label><br>
+        <input type="text" name="first" id="firstName"><br><br>
+        <label>Last NAME</label><br>
+        <input type="text" name="last" id="lastName"><br><br>
+        <label>EMAIL</label><br>
+        <input type="text" name="email" id="email"><br> <br>
+        <label>PASSWORD</label><br>
+        <input type="text" name="password" id="password"><br><br>
+        <label>RE-PASSWORD</label><br>
+        <input type="text" name="re_password" id="re_password"><br><br>
+        <input type="submit" id="regs" value="sign up">
+
+    </form>
+  </div><br><br><br>
+  <div class="imgs">
+    <img src="{% static 'images/l.png' %}" height="100px">
+  <p style="font-size: 40px; font-family: Arial, Helvetica, sans-serif; border-bottom: 4px solid blue; width: 100px;">Wellcome!!!</p>
+  <p>you have already</p>
+  <p>account just login</p>
+  <p>your login detail sent to your  regster mail</p>
+   <input type="submit"  id="log" value="login">
+</div>
+
+
+  <div class="login" style="display:  none;">
+    <form action="log" method="post">
+        {% csrf_token %}
+        <h2 style="border-bottom: 4px solid blue; width: 100px; font-size: 15px
+        ;">SGIN IN</h2>
+        <label>FIRST NAME</label><br>
+        <input type="text" name="first"><br><br>
+       
+        <label>PASSWORD</label><br>
+        <input type="text" name="password"><br><br>
+        
+        <input type="submit" value="sgin in">
+
+    </form>
+    <a href="/forget">forget password?</a>
+  </div> <br>
+
+    <p>{{name}}</p>
+</body>
+</html>

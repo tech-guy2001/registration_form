@@ -1,0 +1,47 @@
+
+
+
+.reg{
+    border: none;
+    border-radius: 10px;
+    padding-top: 10px;
+    padding: 50px;
+   width: 300px;
+    background-image: radial-gradient(circle, aqua, aqua,  aquamarine);
+    font-size: 16px;
+    margin-left:260px;
+}
+.login{
+    
+    border: none;
+    display: none;
+    position: absolute;
+    left: 670px;
+    top: -50px;
+    border-radius: 10px;
+    padding: 30px;
+    padding-left: 40px;
+    width: 300px;
+ 
+    background-color: aqua;
+   
+}
+input[type=submit]{
+    font-size: 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: blue;
+    color: white;
+  
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    width: 100px;
+    padding: 10px;
+}
+input[type=text]
+{
+    border: none;
+    border-bottom: 3px solid white;
+    border-radius: 5px;
+    width: 200px;
+    padding: 5px;
+}
